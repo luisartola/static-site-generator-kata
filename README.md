@@ -1,11 +1,12 @@
 # Static site generator kata
  
-A simple Kata to learn modern Java concepts
+- A simple Kata to learn modern Java concepts
 
 ## Concepts
 
 - [Java 7 and 8 Concepts slides](./docs/flash-cards.pdf)
 - RSVP, flash cards, flipped classrooms
+- [Developed with Marp](https://github.com/marp-team/marp)
 
 ## Deliberate practice
 
