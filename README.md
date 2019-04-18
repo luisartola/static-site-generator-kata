@@ -1,6 +1,13 @@
-# static-site-generator-kata
-
+# Static site generator kata
+ 
 A simple Kata to learn modern Java concepts
+
+## Concepts
+
+- [Java 7 and 8 Concepts slides](./docs/flash-cards.pdf)
+- RSVP, flash cards, flipped classrooms
+
+## Deliberate practice
 
 - develop a "build" command: transform markdown to html
 - all md files in a folder are concatenated
