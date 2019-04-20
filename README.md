@@ -5,8 +5,15 @@
 ## Concepts
 
 - [Java 7 and 8 Concepts slides](./docs/flash-cards.pdf)
-- RSVP, flash cards, flipped classrooms
+- RSVP, flash cards
 - [Developed with Marp](https://github.com/marp-team/marp)
+
+## Short talks and flipped classroom
+
+- https://www.slideshare.net/SimonRitter/presentations
+- https://www.oreilly.com/learning/java7-features
+- https://dzone.com/articles/new-java-7-language-features
+- ...
 
 ## Deliberate practice
 
