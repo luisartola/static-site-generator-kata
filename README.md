@@ -11,6 +11,7 @@
 ## Short talks and flipped classroom
 
 - https://www.slideshare.net/SimonRitter/presentations
+- Effective Java Third Edition book
 - https://www.oreilly.com/learning/java7-features
 - https://dzone.com/articles/new-java-7-language-features
 - ...
