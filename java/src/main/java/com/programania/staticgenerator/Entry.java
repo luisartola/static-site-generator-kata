@@ -6,20 +6,20 @@ class Entry {
   private final Path fileName;
   private final String content;
 
-  public Entry(Path fileName, String content) {
+  private Entry(Path fileName, String content) {
     this.fileName = fileName;
     this.content = content;
   }
 
-  public static Entry of(Path fileName, String content) {
+  static Entry of(Path fileName, String content) {
     return new Entry(fileName, content);
   }
 
-  public String getContent() {
+  String getContent() {
     return this.content;
   }
 
-  public String getName() {
+  String getNameWithHtmlExtension() {
     return this.fileName.getFileName().toString().replace(".md", "").concat(".html");
   }
 }
