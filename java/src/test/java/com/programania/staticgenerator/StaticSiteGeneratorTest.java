@@ -2,6 +2,7 @@ package com.programania.staticgenerator;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -12,25 +13,14 @@ import static org.junit.Assert.assertTrue;
 
 public class StaticSiteGeneratorTest {
 
-  @Test
-  public void si_pasamos_fichero() {
-
-    Path aFile = Paths.get("../source/01-section/01-intro.md");
-
-    List<Path> writtenPaths = buildSite(aFile, Paths.get("../site"));
-
-    List<String> lines = Utils.flatmapLines(writtenPaths);
-    assertEquals(1, lines.size());
-    lines.forEach(line -> assertTrue(line.contains("This is <em>Sparta</em>")));
-  }
-
+  private static final Path OUTPUT = Paths.get("../site");
 
   @Test
-  public void si_pasamos_directorio() {
+  public void si_pasamos_directorio() throws IOException {
 
     Path aFolder = Paths.get("../source/01-section/");
 
-    List<Path> writtenPaths = buildSite(aFolder, Paths.get("../site"));
+    List<Path> writtenPaths = buildSite(aFolder, OUTPUT);
 
     List<String> lines = Utils.flatmapLines(writtenPaths);
     assertEquals(3, lines.size());
@@ -40,11 +30,11 @@ public class StaticSiteGeneratorTest {
 
 
   @Test
-  public void si_pasamos_directorio_padre() {
+  public void si_pasamos_directorio_padre() throws IOException {
 
     Path aFolder = Paths.get("../source/");
 
-    List<Path> writtenPaths = buildSite(aFolder, Paths.get("../site"));
+    List<Path> writtenPaths = buildSite(aFolder, OUTPUT);
 
     List<String> lines = Utils.flatmapLines(writtenPaths);
     assertEquals(6, lines.size());

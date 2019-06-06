@@ -5,12 +5,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import static com.programania.staticgenerator.LambdaUtils.unchecked;
 import static java.util.stream.Collectors.toList;
 
 
 class StaticSiteGenerator {
 
-  static List<Path> buildSite(Path aFolder, Path output) {
+  static List<Path> buildSite(Path aFolder, Path output) throws IOException {
+
+    Files.walk(output.toAbsolutePath())
+        .forEach(path -> unchecked(() -> Files.delete(path)));
+
     return StaticSiteUtils.transform(aFolder.toAbsolutePath())
         .stream()
         .map(entry -> uncheckedWrite(output, entry))

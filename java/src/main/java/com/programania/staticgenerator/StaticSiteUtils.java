@@ -25,21 +25,10 @@ public class StaticSiteUtils {
       )).collect(Collectors.toList());
     }
 
-    if (Files.isDirectory(path))
-      return Collections.singletonList(Entry.of(path.getFileName(), concatFolder(path)));
-
-    return Collections.singletonList(Entry.of(path.getFileName(), readFile(path)));
+    return Collections.singletonList(Entry.of(path.getFileName(), concatFolder(path)));
   }
 
-  private static String readFile(Path path) {
-    try {
-      return new String(Files.readAllBytes(path));
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  public static List<Path> getFolders(Path aSection) {
+  private static List<Path> getFolders(Path aSection) {
     //java 8
     try (Stream<Path> paths = Files.walk(aSection, 1)) {
       return paths.collect(toList());
@@ -48,7 +37,7 @@ public class StaticSiteUtils {
     }
   }
 
-  public static boolean isParentDirectory(Path aSection) {
+  private static boolean isParentDirectory(Path aSection) {
     //java 8
     try (Stream<Path> paths = Files.walk(aSection, 1)) {
       return paths.allMatch(path -> Files.isDirectory(path));
@@ -57,12 +46,11 @@ public class StaticSiteUtils {
     }
   }
 
-  public static String concatFolder(Path aSection) {
+  private static String concatFolder(Path aSection) {
     //java 8
     //comentar alternativa forEach Fernando optimización
     try (Stream<Path> paths = Files.walk(aSection, 1)) {
-      List<Path> paths1 = paths.collect(toList());
-      return paths1.stream()
+      return paths
           .filter(Files::isRegularFile)
           .map(StaticSiteUtils::readFile)
           //ojo! para ordenar necesita resolver el stream
@@ -73,10 +61,18 @@ public class StaticSiteUtils {
     }
   }
 
-  public static String render(String content) {
+  static String render(String content) {
     Parser parser = Parser.builder().build();
     Node document = parser.parse(content);
     HtmlRenderer renderer = HtmlRenderer.builder().build();
     return renderer.render(document);
+  }
+
+  private static String readFile(Path path) {
+    try {
+      return new String(Files.readAllBytes(path));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
